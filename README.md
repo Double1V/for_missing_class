@@ -49,3 +49,53 @@ public class SpinWords {
   }
 }
 ```
+
+## kata task2
+[Task link](https://www.codewars.com/kata/564057bc348c7200bd0000ff)    
+My solution
+```java
+public class Thirteen {
+
+    public static long newNumber(long n) {
+        String s = "";
+        while(n > 0) {
+            s += n % 10;
+            n /= 10;
+        }
+        int arr[] = {1, 10, 9, 12, 3, 4};
+
+        for(int i=0; i < s.length(); i++) {
+            n += (s.charAt(i) - '0') * arr[i % 6];
+        }
+        return n;
+    }
+
+    public static long thirt(long n) {
+
+        while(n != newNumber(n)) {
+            n = newNumber(n);
+        }
+        return n;
+    }
+}
+```
+
+My fav solution
+```java
+class Thirteen {
+    
+    private static final int[] seq = new int[]{1,10,9,12,3,4};
+    
+    public static long thirt(long n) {
+        
+        long v = 0, m = n;
+        int p = 0;
+        while (m>0) {
+            v += (m%10)*seq[p++%6];
+            m /= 10;
+        }
+        return v == n ? v : thirt(v);
+        
+    }
+}
+```
